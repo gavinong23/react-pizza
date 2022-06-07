@@ -88,7 +88,7 @@ export const calculatePrice = (cartItem: CartItem, pizzaPrice: PizzaPrice): numb
   return totalPrice;
 }
 
-const compareCartItem = (previousCart: Cart, cartItem: CartItem): number => {
+export const compareCartItem = (previousCart: Cart, cartItem: CartItem): number => {
   let index = -1;
 
   index = previousCart.findIndex((preCart) => (
