@@ -51,19 +51,20 @@ export const updateCart = (
 ) => {
   let newCart: Cart = [];
   const previousCart = [...cart];
-  let price = calculatePrice(cartItem, pizzaPrice);
-  if (cartItem.price !== price) {
-    cartItem.price = price;
+  let newCartItem = Object.assign({}, cartItem);
+  let price = calculatePrice(newCartItem, pizzaPrice);
+  if (newCartItem.price !== price) {
+    newCartItem.price = price;
   }
   if (previousCart.length <= 0) {
-    newCart.push(cartItem);
+    newCart.push(newCartItem);
   } else {
-    const index = compareCartItem(previousCart, cartItem);
+    const index = compareCartItem(previousCart, newCartItem);
     if (index >= 0) {
-      previousCart[index].quantity = previousCart[index].quantity + cartItem.quantity;
+      previousCart[index].quantity = previousCart[index].quantity + newCartItem.quantity;
       newCart = [...previousCart];
     } else {
-      newCart = [...previousCart, cartItem];
+      newCart = [...previousCart, newCartItem];
     }
   }
   return newCart;
